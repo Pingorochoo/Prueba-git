@@ -66,6 +66,10 @@
 									th:href="@{/pacienteController/new}">Registrar</a></li>
 								<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a
 									class="dropdown-item" th:href="@{/pacienteController/toList}">Listar</a></li>
+								<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a
+									class="dropdown-item" th:href="@{/pacienteController/toList}">alterar</a></li>
+								<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a
+									class="dropdown-item" th:href="@{/pacienteController/toList}">tuvieja</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"
 							sec:authorize="hasAnyRole('ROLE_PSICOLOGO','ROLE_PACIENTESUSCRITO')"><a
