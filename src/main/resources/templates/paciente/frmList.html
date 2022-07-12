@@ -17,6 +17,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Nombres</th>
+							<th>Nombres</th>
 							<th>Apellidos</th>
 							<th>Celular</th>
 							<th>Dirección</th>
@@ -33,6 +34,7 @@
 					<tbody>
 						<tr th:each="paciente:${listaPaciente}">
 							<td th:text="${paciente.id}"></td>
+							<td th:text="${paciente.nombres}"></td>
 							<td th:text="${paciente.nombres}"></td>
 							<td th:text="${paciente.apellidos}"></td>
 							<td th:text="${paciente.celular}"></td>
