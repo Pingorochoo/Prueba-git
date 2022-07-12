@@ -17,6 +17,7 @@
 							<th>Comentarios</th>
 							<th>Operacion</th>
 							<th>Operacion</th>
+							<th>id</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,6 +31,7 @@
 							<td><a
 								th:href="@{'/calificacionDelaSesionController/goUpdate/'+${calificacion.id}}">
 									actualizar</a></td>
+							<td th:text="${calificacion.id}"></td>
 						</tr>
 					</tbody>
 				</table>

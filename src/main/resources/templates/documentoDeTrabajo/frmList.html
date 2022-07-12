@@ -20,6 +20,7 @@
 							<th>Tipo</th>
 							<th>descripcion</th>
 							<th>Link</th>
+							<th>Id</th>
 							<!--<th>Operacion</th>  -->
 							<th sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')">Operacion</th>
 						</tr>
@@ -36,6 +37,7 @@
 							<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')"><a
 								th:href="@{'/documentoDeTrabajoController/goUpdate/'+${documento.id}}">
 									actualizar</a></td>
+							<td th:text="${documento.id}"></td>
 						</tr>
 					</tbody>
 				</table>
