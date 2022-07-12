@@ -21,6 +21,7 @@
 							<th>Precio</th>
 							<th>Operacion</th>
 							<th>Operacion</th>
+							<th>id</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -33,6 +34,7 @@
 									eliminar</a></td>
 							<td><a th:href="@{'/planController/edit/'+${plan.id}}">
 									Editar</a></td>
+							<td th:text="${plan.id}"></td>
 						</tr>
 					</tbody>
 				</table>
