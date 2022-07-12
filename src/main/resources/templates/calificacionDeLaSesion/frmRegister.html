@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Psicologos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<form th:action="@{/sesionTerapiaController/saveCalificacion}" method="post"
+				th:object="${sesion}">
+				<div class="form-group">
+					<label for="paciente">Sesiones que aun no calificas: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{id}">
+						<option th:each="varSesi: ${listaSesionesPorPaciente}"
+							th:value="${varSesi.id}" 
+							th:text="${varSesi.titulo}"
+							th:selected="(${varSesi.id} == *{id})"></option>
+
+					</select>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Puntuacion: </label> <input type="number"
+						class="form-control" th:field="*{calificacion.puntuacion}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Coemntarios: </label> <input type="text"
+						class="form-control" th:field="*{calificacion.comentarios}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Registrar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

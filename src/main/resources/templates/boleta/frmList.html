@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de boletas</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de boletas</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Detalles</th>
+							<th>Fecha de pago</th>
+							<th>Monto total</th>
+							<th>Metodo de pago</th>
+							<!-- <th>Operacion</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="boleta:${listaBoleta}">
+							<td th:text="${boleta.id}"></td>
+							<td th:text="${boleta.detalles}"></td>
+							<td th:text="${boleta.fechaDePago}"></td>
+							<td th:text="${boleta.monto}"></td>
+							<td th:text="${boleta.metodoDePago}"></td>
+							<!-- <td><a th:href="@{'/boletaController/edit/'+${boleta.id}}">
+									Editar</a></td> -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

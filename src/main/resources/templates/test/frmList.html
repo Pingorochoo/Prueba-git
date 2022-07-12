@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de tests</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de tests</h1>
+		</div>
+		<div>
+			<div>
+				<form class="form-inline" th:action="@{/testController/search}">
+					<div class="form-gruop mb-2">
+						<label>Filtrar: </label>
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+
+						<input type="text" name="link" class="form-control" id="link"
+							th:value="${link}" placeholder="digite el valor a buscar"
+							required>
+					</div>
+					<input type="submit" class="btn btn-info mb-2" value="Buscar">
+					&nbsp;&nbsp; <input type="button" class="btn btn-secondary mb-2"
+						value="Limpiar" onclick="limpiarCampos()">
+				</form>
+			</div>
+			<!--  th:if="${!listaTest.isEmpty()}" -->
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Nota</th>
+							<th>Link</th>
+							<th>Hora de inicio</th>
+							<th>Hora de fin</th>
+							<!--<th>Operacion</th>  -->
+							<th sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')">Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="test:${listaTest}">
+							<td th:text="${test.id}"></td>
+							<td th:text="${test.nota}"></td>
+							<td th:text="${test.link}"></td>
+							<td th:text="${test.horaDeInicio}"></td>
+							<td th:text="${test.horaDelFin}"></td>
+							<!--<td><a
+								th:href="@{/testController/delete?id=}+${test.idTest}">
+									eliminar</a></td>  -->
+							<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')"><a th:href="@{'/testController/goUpdate/'+${test.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/testController/toList?page=${prev}|}">&laquo;</a></li>
+
+						<li class="page-item"
+							th:each="numeroDePagina : ${numeroDePaginas}"
+							th:classappend="${current == numeroDePagina ? 'active': ''}">
+							<!-- esto creo que podria quitarlo --> <a class="page-link"
+							th:href="@{|/testController/toList?page=${numeroDePagina}|}"
+							th:text="${numeroDePagina}"></a>
+						</li>
+
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/testController/toList?page=${next}|}">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+	<script type="text/javascript">
+		function limpiarCampos(){
+			window.location='/testController/toList';
+		}
+	</script>
+</body>
+</html>

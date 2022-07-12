@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de pacientes</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<th>Celular</th>
+							<th>Dirección</th>
+							<th>Sexo</th>
+							<th>DNI</th>
+							<th>Anotaciones del paciente</th>
+							<th>Fecha de Nacimiento</th>
+							<th>Fecha de Registro</th>
+							<th>Operacion</th>
+							<th>Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="paciente:${listaPaciente}">
+							<td th:text="${paciente.id}"></td>
+							<td th:text="${paciente.nombres}"></td>
+							<td th:text="${paciente.apellidos}"></td>
+							<td th:text="${paciente.celular}"></td>
+							<td th:text="${paciente.direccion}"></td>
+							<td th:text="${paciente.sexo}"></td>
+							<td th:text="${paciente.dni}"></td>
+							<td th:text="${paciente.anotacionesPaciente}"></td>
+							<td th:text="${paciente.fechaDeNacimiento}"></td>
+							<td th:text="${paciente.fechadeRegistro}"></td>
+							<td><a
+								th:href="@{/pacienteController/delete?id=}+${paciente.id}">
+									eliminar</a></td>
+							<td><a
+								th:href="@{'/pacienteController/goUpdate/'+${paciente.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Psicologos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<form th:action="@{/calificacionDelaSesionController/update}" method="post"
+				th:object="${psa}">
+				<div class="col-sm-12">
+					<label class="form-label">ID Calificacion: </label> <input type="text"
+						class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Puntuacion: </label> <input type="text"
+						class="form-control" th:field="*{puntuacion}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Comentarios: </label> <input type="text"
+						class="form-control" th:field="*{comentarios}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

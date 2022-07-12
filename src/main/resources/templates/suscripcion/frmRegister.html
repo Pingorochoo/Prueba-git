@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de suscripcion</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Registro de suscripcion</h1>
+		</div>
+		<div>
+			<form th:action="@{/suscripcionController/save}" method="post"
+				th:object="${suscripcion}">
+				<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+					<label for="paciente">Pacientes: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{paciente.id}">
+						<option th:each="pac: ${listaPacientes}"
+							th:value="${pac.id}" 
+							th:text="${pac.nombres}"
+							th:selected="(${pac.id} == *{paciente.id})"></option>
+
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="Plan">Plan: </label> <select class="form-select"
+						aria-label="default select expample" th:field="*{plan.id}">
+						<option th:each="plan: ${listaPlanes}" th:value="${plan.id}"
+							th:text="${plan.nombre}" th:selected="(${plan.id} == *{plan.id})"></option>
+					</select>
+
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Detalles de la boleta: </label> <input
+						type="text" class="form-control" th:field="*{boleta.detalles}"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('boleta.detalles')}" th:errors="*{boleta.detalles}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Ingrese los meses: </label> <input
+						type="number" class="form-control" th:field="*{meses}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Comprar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

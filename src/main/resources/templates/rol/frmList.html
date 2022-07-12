@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de roles</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de roles</h1>
+		</div>
+		<div>
+			<!--  th:if="${!listaTest.isEmpty()}" -->
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Nombre</th>
+							<!--<th>Operacion</th>  -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="rol:${listaRole}">
+							<td th:text="${rol.id}"></td>
+							<td th:text="${rol.nombre}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/testController/toList?page=${prev}|}">&laquo;</a></li>
+
+						<li class="page-item"
+							th:each="numeroDePagina : ${numeroDePaginas}"
+							th:classappend="${current == numeroDePagina ? 'active': ''}">
+							<!-- esto creo que podria quitarlo --> <a class="page-link"
+							th:href="@{|/testController/toList?page=${numeroDePagina}|}"
+							th:text="${numeroDePagina}"></a>
+						</li>
+
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/testController/toList?page=${next}|}">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

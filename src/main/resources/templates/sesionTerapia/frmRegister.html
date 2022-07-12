@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Sesion Terapia</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Registro de Sesion Terapia</h1>
+		</div>
+		<div>
+			<form th:action="@{/sesionTerapiaController/save}" method="post"
+				th:object="${sesionTerapia}">
+				<div class="form-group">
+					<label for="paciente">Nombre del paciente: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{paciente.id}">
+						<option th:each="varPaciente: ${listaPaciente}"
+							th:value="${varPaciente.id}" th:text="${varPaciente.nombres}"
+							th:selected="(${varPaciente.id} == *{paciente.id})"></option>
+
+					</select>
+
+				</div>
+				<div class="form-group">
+					<label for="psicologo">Nombre del psicologo: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{psicologo.id}">
+						<option th:each="varPsicologo: ${listaPsicologo}"
+							th:value="${varPsicologo.id}" th:text="${varPsicologo.nombres}"
+							th:selected="(${varPsicologo.id} == *{psicologo.id})"></option>
+
+					</select>
+
+				</div>
+				<div th:if="${listaDocumentosNoInsertados.isEmpty()}">
+					<br> <input type="button" class="btn btn-secondary mb-2"
+						value="Registrar documento" onclick="registrarDocumento()">
+					<br>
+				</div>
+				<div th:if="${!listaDocumentosNoInsertados.isEmpty()}">
+					<br> <input type="button" class="btn btn-secondary mb-2"
+						value="Editar documento" onclick="editarDocumento()"> <br>
+				</div>
+				<div class="form-group">
+					<select class="form-select" aria-label="default select expample"
+						th:field="*{documento.id}">
+
+						<option
+							th:each="varDocumentoDeTrabajo: ${listaDocumentosNoInsertados}"
+							th:value="${varDocumentoDeTrabajo.id}"
+							th:text="${varDocumentoDeTrabajo.descripcion}"
+							th:selected="(${varDocumentoDeTrabajo.id} == *{documento.id})"></option>
+
+					</select>
+
+				</div>
+				<div th:if="${listaTestNoInsertados.isEmpty()}">
+					<br> <input type="button" class="btn btn-secondary mb-2"
+						value="Registrar test" onclick="registrarTest()"> <br>
+				</div>
+				<div th:if="${!listaTestNoInsertados.isEmpty()}">
+					<br> <input type="button" class="btn btn-secondary mb-2"
+						value="Editar test" onclick="editarTest()"> <br>
+				</div>
+				<div class="form-group">
+					<select class="form-select" aria-label="default select expample"
+						th:field="*{test.id}">
+						<option th:each="varTest: ${listaTestNoInsertados}"
+							th:value="${varTest.id}" th:text="${varTest.nota}"
+							th:selected="(${varTest.id} == *{test.id})"></option>
+
+					</select>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Titulo: </label> <input type="text"
+						class="form-control" th:field="*{titulo}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Descripcion: </label> <input type="text"
+						class="form-control" th:field="*{descripcion}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Hora de inicio: </label> <input
+						type="text" class="form-control" th:field="*{horaDeInicio}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Hora de cirre: </label> <input
+						type="text" class="form-control" th:field="*{horaDelFin}"></input>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-dark" value="Registrar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+	<script type="text/javascript">
+		function registrarDocumento(){
+			window.location='/documentoDeTrabajoController/new';
+		}
+		function editarDocumento(){
+			window.location='/documentoDeTrabajoController/editLastInserted';
+		}
+		function registrarTest(){
+			window.location='/testController/new';
+		}
+		function editarTest(){
+			window.location='/testController/editLastInserted';
+		}
+	</script>
+
+</body>
+</html>

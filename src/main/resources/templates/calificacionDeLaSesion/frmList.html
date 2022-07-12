@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Puntuacion</th>
+							<th>Comentarios</th>
+							<th>Operacion</th>
+							<th>Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="calificacion:${listaCalificaciones}">
+							<td th:text="${calificacion.id}"></td>
+							<td th:text="${calificacion.puntuacion}"></td>
+							<td th:text="${calificacion.comentarios}"></td>
+							<td><a
+								th:href="@{/calificacionDelaSesionController/delete?id=}+${calificacion.id}">
+									eliminar</a></td>
+							<td><a
+								th:href="@{'/calificacionDelaSesionController/goUpdate/'+${calificacion.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/calificacionDelaSesionController/toList?page=${prev}|}">&laquo;</a></li>
+
+						<li class="page-item"
+							th:each="numeroDePagina : ${numeroDePaginas}"
+							th:classappend="${current == numeroDePagina ? 'active': ''}"> <!-- esto creo que podria quitarlo -->
+							<a class="page-link"
+							th:href="@{|/calificacionDelaSesionController/toList?page=${numeroDePagina}|}"
+							th:text="${numeroDePagina}"></a>
+						</li>
+
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/calificacionDelaSesionController/toList?page=${next}|}">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

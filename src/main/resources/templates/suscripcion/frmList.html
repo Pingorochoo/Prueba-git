@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de suscripciones</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de suscripciones</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Plan</th>
+							<th>Monto total de la boleta</th>
+							<th>Fecha de registro</th>
+							<th>Tiempo en meses</th>
+							<!-- <th>Nombre Del Paciente</th> -->
+							<th>Operacion</th>
+							<th>Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="suscripcion:${listaSuscripcion}">
+							<td th:text="${suscripcion.id}"></td>
+							<td th:text="${suscripcion.plan.nombre}"></td>
+							<td th:text="${suscripcion.boleta.monto}"></td>
+							<td th:text="${suscripcion.fechaDeRegistro}"></td>
+							<td th:text="${suscripcion.meses}"></td>
+							<!-- <td th:text="${suscripcion.paciente.idPaciente}"></td> -->
+							<td><a
+								th:href="@{/suscripcionController/delete?id=}+${suscripcion.id}">
+									eliminar</a></td>
+							<td><a
+								th:href="@{'/suscripcionController/edit/'+${suscripcion.id}}">
+									Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

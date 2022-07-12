@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Free mind</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<br><br><br><br><br>br><br><br><br><br>
+	<div class="container">
+		<div class="table-responsive">
+			<div class="card bg-dark text-white">
+				<div class="card-body">
+					<h5 class="card-title">Los sentimos , no tienes permisos para
+						acceder a este recurso.</h5>
+					<a th:href="@{/login}" class="btn btn-outline-danger"
+						role="button">Ir al inicio</a>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

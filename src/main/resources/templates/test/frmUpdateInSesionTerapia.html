@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Update de Tests</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Actualizacion de test</h1>
+		</div>
+		<div>
+			<form th:action="@{/testController/updateLastInserted}" method="post"
+				th:object="${psa}">
+				<div class="col-sm-12">
+					<label class="form-label">Id test: </label> <input type="text"
+						class="form-control" th:field="*{idTest}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Nota: </label> <input type="text"
+						class="form-control" th:field="*{nota}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Link: </label> <input type="text"
+						class="form-control" th:field="*{link}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Hora de Inicio: </label> <input
+						type="number" class="form-control" th:field="*{horaDeInicio}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Hora de Fin: </label> <input
+						type="number" class="form-control" th:field="*{horaDelFin}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

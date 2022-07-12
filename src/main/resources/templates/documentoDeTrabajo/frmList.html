@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de documentos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de documentos</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Tipo</th>
+							<th>descripcion</th>
+							<th>Link</th>
+							<!--<th>Operacion</th>  -->
+							<th sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')">Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="documento:${listaDocumentos}">
+							<td th:text="${documento.id}"></td>
+							<td th:text="${documento.tipo}"></td>
+							<td th:text="${documento.descripcion}"></td>
+							<td th:text="${documento.link}"></td>
+							<!--<td><a
+								th:href="@{/documentoDeTrabajoController/delete?id=}+${documento.idDocumento}">
+									eliminar</a></td>  -->
+							<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')"><a
+								th:href="@{'/documentoDeTrabajoController/goUpdate/'+${documento.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/documentoDeTrabajoController/toList?page=${prev}|}">&laquo;</a></li>
+
+						<li class="page-item"
+							th:each="numeroDePagina : ${numeroDePaginas}"
+							th:classappend="${current == numeroDePagina ? 'active': ''}">
+							<!-- esto creo que podria quitarlo --> <a class="page-link"
+							th:href="@{|/documentoDeTrabajoController/toList?page=${numeroDePagina}|}"
+							th:text="${numeroDePagina}"></a>
+						</li>
+
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link"
+							th:href="@{|/documentoDeTrabajoController/toList?page=${next}|}">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

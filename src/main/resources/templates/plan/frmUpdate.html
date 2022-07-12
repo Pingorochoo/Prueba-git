@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Actualizar plan</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Actualizacion de plan</h1>
+		</div>
+		<div>
+			<form th:action="@{/planController/update}" method="post"
+				th:object="${plan}">
+				<div class="col-sm-12">
+					<label class="form-label">ID Plan: </label> <input type="number"
+						class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Nombre: </label> <input type="text"
+						class="form-control" th:field="*{nombre}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Descripcion: </label> <input type="text"
+						class="form-control" th:field="*{descripcion}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Precio: </label> <input type="number"
+						class="form-control" th:field="*{precio}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Psicologos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<div>
+				<h1>Registrar psicologo</h1>
+			</div>
+			<form th:action="@{/psicologoController/save}"
+				th:object="${psicologo}" method="post" class="form">
+				<div class="form-group">
+					<label for="paciente">Usuarios No asinagos: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{user.id}">
+						<option th:each="varUser: ${listaUsuariosSinRoles}"
+							th:value="${varUser.id}" th:text="${varUser.username}"
+							th:selected="(${varUser.id} == *{user.id})"></option>
+
+					</select>
+
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Nombres: </label> <input
+						type="text" class="form-control" th:field="*{nombres}"
+						placeholder="nombres">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Apellidos:
+					</label> <input type="text" class="form-control" th:field="*{apellidos}"
+						placeholder="apellidos">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Celular: </label> <input
+						type="text" class="form-control" th:field="*{celular}"
+						placeholder="ingrese un numero de 9 cifras sin espacios">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Direccion:
+					</label> <input type="text" class="form-control" th:field="*{direccion}"
+						placeholder="ingrese su direccion">
+				</div>
+				<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Sexo: </label> <input
+						type="text" class="form-control" th:field="*{sexo}"
+						placeholder="Digite una letra:'M' o 'F'">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">DNI: </label> <input
+						type="text" class="form-control" th:field="*{dni}"
+						placeholder="ingrese su documento de identidad(7 cifras)">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Fecha de
+						nacimiento: </label> <input type="date" class="form-control"
+						th:field="*{fechaDeNacimiento}">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('fechaDeNacimiento')}"
+						th:errors="*{fechaDeNacimiento}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Fecha del
+						inicio del contrato: </label> <input type="date" class="form-control"
+						th:field="*{fechaInicioContrato}">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('fechaInicioContrato')}"
+						th:errors="*{fechaInicioContrato}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Fecha del
+						final del contrato: </label> <input type="date" class="form-control"
+						th:field="*{fechaFinalContrato}">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('fechaFinalContrato')}"
+						th:errors="*{fechaFinalContrato}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" style="color: black;">Sueldo: </label> <input
+						type="text" class="form-control" th:field="*{sueldo}"
+						placeholder="ingrese el monto mensual">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('sueldo')}" th:errors="*{sueldo}"></div>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-dark" value="Registrar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

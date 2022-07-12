@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Actualizar Psicologo</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<div>
+				<h1>Actualizar psicologo</h1>
+			</div>
+			<form th:action="@{/psicologoController/update}" method="post"
+				th:object="${psa}">
+				<div class="col-sm-12">
+					<label class="form-label">ID: </label> <input type="text"
+						class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Nombres: </label> <input type="text"
+						class="form-control" th:field="*{nombres}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Apellidos: </label> <input type="text"
+						class="form-control" th:field="*{apellidos}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Celular: </label> <input type="text"
+						class="form-control" th:field="*{celular}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Direccion: </label> <input type="text"
+						class="form-control" th:field="*{direccion}">
+				</div>
+				<div class="form-group">
+					<label class="form-label">Sexo: </label> <input type="text"
+						class="form-control" th:field="*{sexo}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">DNI: </label> <input type="text"
+						class="form-control" th:field="*{dni}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Fecha de nacimiento: </label> <input
+						type="date" class="form-control"
+						th:field="*{fechaDeNacimiento}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('fechaDeNacimiento')}" th:errors="*{fechaDeNacimiento}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Fecha de registro: </label> <input type="date"
+						class="form-control" th:field="*{fechadeRegistro}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('fechadeRegistro')}" th:errors="*{fechadeRegistro}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Fecha del inicio del contrato: </label> <input type="date"
+						class="form-control" th:field="*{fechaInicioContrato}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('fechaInicioContrato')}" th:errors="*{fechaInicioContrato}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Fecha del final del contrato: </label> <input type="date"
+						class="form-control" th:field="*{fechaFinalContrato}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('fechaFinalContrato')}" th:errors="*{fechaFinalContrato}"></div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Sueldo: </label> <input type="text"
+						class="form-control" th:field="*{sueldo}">
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('sueldo')}" th:errors="*{sueldo}"></div>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

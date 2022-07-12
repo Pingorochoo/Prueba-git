@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Pacientes</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Registro de pacientes</h1>
+		</div>
+		<div>
+			<form th:action="@{/pacienteController/save}" method="post"
+				th:object="${paciente}">
+				<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+					<label for="paciente">Usuarios No asinagos: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{user.id}">
+						<option th:each="varUser: ${listaUsuariosSinRoles}"
+							th:value="${varUser.id}" th:text="${varUser.username}"
+							th:selected="(${varUser.id} == *{user.id})"></option>
+
+					</select>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Nombres: </label> <input
+						type="text" class="form-control" th:field="*{nombres}"
+						placeholder="nombres"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Apellidos:
+					</label> <input type="text" class="form-control" th:field="*{apellidos}"
+						placeholder="apellidos"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Celular: </label> <input
+						type="text" class="form-control" th:field="*{celular}"
+						placeholder="ingrese un numero de 9 cifras sin espacios"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Direccion:
+					</label> <input type="text" class="form-control" th:field="*{direccion}"
+						placeholder="ingrese su direccion"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Sexo: </label> <input
+						type="text" class="form-control" th:field="*{sexo}"
+						placeholder="Digite una letra:'M' o 'F'"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">DNI: </label> <input
+						type="text" class="form-control" th:field="*{dni}"
+						placeholder="ingrese su documento de identidad(7 cifras)"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Anotaciones
+						del paciente: </label> <input type="text" class="form-control"
+						th:field="*{anotacionesPaciente}" placeholder="anotaciones"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('anotacionesPaciente')}" th:errors="*{anotacionesPaciente}"></div>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: black;">Fecha de
+						nacimiento: </label> <input type="date" class="form-control"
+						th:field="*{fechaDeNacimiento}"></input>
+						<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('fechaDeNacimiento')}"
+						th:errors="*{fechaDeNacimiento}"></div>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Registrar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

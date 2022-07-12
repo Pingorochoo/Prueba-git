@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<div>
+				<h1>Lista de Psicologos</h1>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<th>Celular</th>
+							<th>Dirección</th>
+							<th>Sexo</th>
+							<th>DNI</th>
+							<th>Fecha de nacimiento</th>
+							<th>Fecha de registro</th>
+							<th>Fecha del inicio del contrato</th>
+							<th>Fecha del final del contrato</th>
+							<th>Sueldo</th>
+							<th>Operacion</th>
+							<th>Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="psicologo:${listaPsicologo}">
+							<td th:text="${psicologo.id}"></td>
+							<td th:text="${psicologo.nombres}"></td>
+							<td th:text="${psicologo.apellidos}"></td>
+							<td th:text="${psicologo.celular}"></td>
+							<td th:text="${psicologo.direccion}"></td>
+							<td th:text="${psicologo.sexo}"></td>
+							<td th:text="${psicologo.dni}"></td>
+							<td th:text="${psicologo.fechaDeNacimiento}"></td>
+							<td th:text="${psicologo.fechadeRegistro}"></td>
+							<td th:text="${psicologo.fechaInicioContrato}"></td>
+							<td th:text="${psicologo.fechaFinalContrato}"></td>
+							<td th:text="${psicologo.sueldo}"></td>
+							<td><a
+								th:href="@{/psicologoController/delete?id=}+${psicologo.id}">
+									eliminar</a></td>
+							<td><a
+								th:href="@{'/psicologoController/goUpdate/'+${psicologo.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

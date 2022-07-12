@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Actualizacion de documento</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+	<div>
+			<h1>Actualizacion de documento</h1>
+		</div>
+		<div>
+			<form th:action="@{/documentoDeTrabajoController/update}" method="post"
+				th:object="${documentoActualizar}">
+				<div class="col-sm-12">
+					<label class="form-label">Id Documento: </label> <input type="text"
+						class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Tipo: </label> <input type="text"
+						class="form-control" th:field="*{tipo}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Descripcion: </label> <input type="text"
+						class="form-control" th:field="*{descripcion}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Link: </label> <input type="text"
+						class="form-control" th:field="*{link}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

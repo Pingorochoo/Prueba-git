@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Psicologos</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Actualizar sesion de terapia</h1>
+		</div>
+		<div>
+			<form th:action="@{/sesionTerapiaController/update}" method="post"
+				th:object="${sesion}">
+				<div class="col-sm-12">
+					<label class="form-label">Id de la sesion de terapia: </label> <input
+						type="text" class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="form-group">
+					<label for="paciente">Nombre del paciente: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{paciente.id}">
+						<option th:each="varPaciente: ${listaPaciente}"
+							th:value="${varPaciente.id}" th:text="${varPaciente.nombres}"
+							th:selected="(${varPaciente.id} == *{paciente.id})"></option>
+
+					</select>
+
+				</div>
+				<div class="form-group">
+					<label for="psicologo">Nombre del psicologo: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{psicologo.id}">
+						<option th:each="varPsicologo: ${listaPsicologo}"
+							th:value="${varPsicologo.id}" th:text="${varPsicologo.nombres}"
+							th:selected="(${varPsicologo.id} == *{psicologo.id})"></option>
+
+					</select>
+
+				</div>
+				<!--<div class="form-group">
+					<label for="documentoDeTrabajo">Documento de trabajo: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{documento.id}">
+
+						<option
+							th:each="varDocumentoDeTrabajo: ${listaDocumentos}"
+							th:value="${varDocumentoDeTrabajo.id}"
+							th:text="${varDocumentoDeTrabajo.descripcion}"
+							th:selected="(${varDocumentoDeTrabajo.id} == *{documento.id})"></option>
+
+					</select>
+
+				</div>
+				 <div class="form-group">
+					<label for="calificacionDeLaSesion">Calificacion de la sesion: </label> <select
+						class="form-select" aria-label="default select expample"
+						th:field="*{calificacion.idCalificacion}">
+						<option th:each="pvarCalificacionDeLaSesion: ${plistaCalificaciones}"
+							th:value="${pvarCalificacionDeLaSesion.idCalificacion}"
+							th:text="${pvarCalificacionDeLaSesion.calificacion}"
+							th:selected="(${pvarCalificacionDeLaSesion.idCalificacion} == *{calificacion.idCalificacion})"></option>
+
+					</select>
+
+				</div>
+				<div class="form-group">
+					<label for="test">Test: </label> <select class="form-select"
+						aria-label="default select expample" th:field="*{test.id}">
+						<option th:each="varTest: ${listaTest}"
+							th:value="${varTest.id}" th:text="${varTest.nota}"
+							th:selected="(${varTest.id} == *{test.id})"></option>
+
+					</select>
+
+				</div>-->
+				<div class="form-group">
+					<label class="form-label">Titulo: </label> <input type="text"
+						class="form-control" th:field="*{titulo}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Descripcion: </label> <input type="text"
+						class="form-control" th:field="*{descripcion}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Fecha de la sesion: </label> <input
+						type="date" class="form-control" th:field="*{fechaDeLaSesion}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Hora de inicio: </label> <input
+						type="text" class="form-control" th:field="*{horaDeInicio}"></input>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Hora de cirre: </label> <input
+						type="text" class="form-control" th:field="*{horaDelFin}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

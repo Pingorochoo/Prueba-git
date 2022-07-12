@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Lista de planes</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de planes</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Nombre</th>
+							<th>Descripcion</th>
+							<th>Precio</th>
+							<th>Operacion</th>
+							<th>Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="plan:${listaPlan}">
+							<td th:text="${plan.id}"></td>
+							<td th:text="${plan.nombre}"></td>
+							<td th:text="${plan.descripcion}"></td>
+							<td th:text="${plan.precio}"></td>
+							<td><a th:href="@{/planController/delete?id=}+${plan.id}">
+									eliminar</a></td>
+							<td><a th:href="@{'/planController/edit/'+${plan.id}}">
+									Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

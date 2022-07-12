@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Registro de Pacientes</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Actualizar paciente</h1>
+		</div>
+		<div>
+			<form th:action="@{/pacienteController/update}" method="post"
+				th:object="${psa}">
+				<div class="col-sm-12">
+					<label class="form-label">Id: </label> <input type="text"
+						class="form-control" th:field="*{id}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Nombres: </label> <input type="text"
+						class="form-control" th:field="*{nombres}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Apellidos: </label> <input type="text"
+						class="form-control" th:field="*{apellidos}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Celular: </label> <input type="text"
+						class="form-control" th:field="*{celular}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Direccion: </label> <input type="text"
+						class="form-control" th:field="*{direccion}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Sexo: </label> <input type="text"
+						class="form-control" th:field="*{sexo}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">DNI: </label> <input type="text"
+						class="form-control" th:field="*{dni}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Anotaciones del paciente: </label> <input
+						type="text" class="form-control" th:field="*{anotacionesPaciente}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Fecha de nacimiento: </label> <input
+						type="date" class="form-control" th:field="*{fechaDeNacimiento}"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label">Fecha de registro: </label> <input
+						type="date" class="form-control" th:field="*{fechadeRegistro}"></input>
+				</div>
+				<div class="col-sm-12">
+					<input type="submit" class="btn btn-dark" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>

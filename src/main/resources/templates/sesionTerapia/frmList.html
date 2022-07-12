@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<h1>Lista de sesiones de terapia</h1>
+		</div>
+		<div>
+			<div class="table-responsive">
+				<table class="table table-white">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre del paciente</th>
+							<th>Nombre del psicologo</th>
+							<th>Descripcion del documento</th>
+							<!--<th>Calificacion de la sesion</th> -->
+							<th>Nota del test</th>
+							<th>Titulo</th>
+							<th>Descripcion</th>
+							<th>Fecha de la sesion</th>
+							<th>Hora de inicio</th>
+							<th>Hora de cierre</th>
+							<th sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')">Operacion</th>
+							<th sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')">Operacion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sesionTerapia:${listaSesionTerapia}">
+							<td th:text="${sesionTerapia.id}"></td>
+							<td th:text="${sesionTerapia.paciente.nombres}"></td>
+							<td th:text="${sesionTerapia.psicologo.nombres}"></td>
+							<td th:text="${sesionTerapia.documento.descripcion}"></td>
+							<!--<td th:text="${sesionTerapia.calificacion.calificacion}"></td> -->
+							<td th:text="${sesionTerapia.test.nota}"></td>
+							<td th:text="${sesionTerapia.titulo}"></td>
+							<td th:text="${sesionTerapia.descripcion}"></td>
+							<td th:text="${sesionTerapia.fechaDeLaSesion}"></td>
+							<td th:text="${sesionTerapia.horaDeInicio}"></td>
+							<td th:text="${sesionTerapia.horaDelFin}"></td>
+							<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')"><a
+								th:href="@{/sesionTerapiaController/delete?id=}+${sesionTerapia.id}">
+									eliminar</a></td>
+							<td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PSICOLOGO')"><a
+								th:href="@{'/sesionTerapiaController/goUpdate/'+${sesionTerapia.id}}">
+									actualizar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: modalLogaut"></footer>
+</body>
+</html>
