@@ -27,6 +27,7 @@
 							<th>Fecha de Registro</th>
 							<th>Operacion</th>
 							<th>Operacion</th>
+							<th>Id</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,6 +48,7 @@
 							<td><a
 								th:href="@{'/pacienteController/goUpdate/'+${paciente.id}}">
 									actualizar</a></td>
+							<td th:text="${paciente.id}"></td>
 						</tr>
 					</tbody>
 				</table>
